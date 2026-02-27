@@ -190,7 +190,13 @@ export const EducationSection: React.FC = () => {
         </div>
 
         {/* Business Case / Revenue Model */}
-        <div className="bg-frontier-slate text-white rounded-sm p-8 md:p-12 mb-16 relative overflow-hidden">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="bg-frontier-slate text-white rounded-sm p-8 md:p-12 mb-16 relative overflow-hidden"
+        >
              {/* Background Pattern */}
              <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
 
@@ -204,13 +210,25 @@ export const EducationSection: React.FC = () => {
                         Tourism is often seasonal (Summer/Fall). Schools provide steady, reliable weekday revenue during the traditional "off-season." 
                         Our catchment area includes Sullivan County Schools plus Washington, Hawkins, Carter, and Johnson counties.
                     </p>
-                    <div className="bg-white/10 p-4 rounded-sm inline-block">
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.4 }}
+                      className="bg-white/10 p-4 rounded-sm inline-block"
+                    >
                         <span className="block text-xs uppercase tracking-widest text-frontier-gold mb-1">Total Regional K-12 Enrollment</span>
                         <span className="font-mono text-xl font-bold">~45,000 Students</span>
-                    </div>
+                    </motion.div>
                 </div>
 
-                <div className="bg-frontier-limestone text-frontier-slate p-6 rounded-sm shadow-xl transform rotate-1 hover:rotate-0 transition-transform duration-300">
+                <motion.div 
+                  initial={{ opacity: 0, rotate: 5, x: 20 }}
+                  whileInView={{ opacity: 1, rotate: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.6, type: "spring" }}
+                  className="bg-frontier-limestone text-frontier-slate p-6 rounded-sm shadow-xl transform rotate-1 hover:rotate-0 transition-transform duration-300"
+                >
                     <h4 className="font-bold text-sm uppercase tracking-widest text-frontier-slate/50 mb-4 border-b border-frontier-slate/10 pb-2">Revenue Potential</h4>
                     <div className="space-y-4 font-mono text-sm">
                         <div>
@@ -223,12 +241,18 @@ export const EducationSection: React.FC = () => {
                         </div>
                         <div className="pt-2 border-t border-frontier-slate/20 mt-2">
                             <p className="text-xs text-frontier-red font-bold mb-1 uppercase">Total Education Revenue</p>
-                            <p className="text-2xl font-bold text-frontier-red">$96,000 / yr</p>
+                            <motion.p 
+                              initial={{ opacity: 0 }}
+                              whileInView={{ opacity: 1 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 1 }}
+                              className="text-2xl font-bold text-frontier-red"
+                            >$96,000 / yr</motion.p>
                         </div>
                     </div>
-                </div>
+                </motion.div>
              </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

@@ -1,8 +1,15 @@
 import React from 'react';
 import { AlertTriangle, ShieldCheck, Milestone, ArrowDown } from 'lucide-react';
+import { motion } from 'motion/react';
 
 const TrafficFunnel = () => (
-    <div className="relative w-full bg-white rounded-sm border border-frontier-slate/10 overflow-hidden shadow-2xl flex flex-col items-center">
+    <motion.div 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="relative w-full bg-white rounded-sm border border-frontier-slate/10 overflow-hidden shadow-2xl flex flex-col items-center"
+    >
         
         {/* HERO: The Traffic Stream */}
         <div className="relative w-full h-80 bg-slate-900 overflow-hidden group border-b-4 border-frontier-gold">
@@ -25,25 +32,55 @@ const TrafficFunnel = () => (
 
             {/* The Metric Overlay */}
             <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-                 <span className="inline-block py-1 px-3 rounded-full bg-slate-800/80 backdrop-blur border border-slate-600 text-[10px] font-bold uppercase tracking-widest text-slate-300 mb-4 shadow-lg">
+                 <motion.span 
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 }}
+                    className="inline-block py-1 px-3 rounded-full bg-slate-800/80 backdrop-blur border border-slate-600 text-[10px] font-bold uppercase tracking-widest text-slate-300 mb-4 shadow-lg"
+                 >
                     Existing Condition
-                 </span>
+                 </motion.span>
                  
                  <div className="flex flex-col items-center">
-                    <h4 className="font-serif text-2xl font-bold text-white/60 mb-1">US-11E Corridor</h4>
-                    <span className="text-6xl md:text-8xl font-bold tracking-tighter text-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)]">
+                    <motion.h4 
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 0.6 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.7 }}
+                      className="font-serif text-2xl font-bold text-white/60 mb-1"
+                    >US-11E Corridor</motion.h4>
+                    <motion.span 
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ type: "spring", stiffness: 100, delay: 0.9 }}
+                      className="text-6xl md:text-8xl font-bold tracking-tighter text-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)]"
+                    >
                         45,000
-                    </span>
-                    <span className="text-sm font-bold text-frontier-gold uppercase tracking-[0.3em] mt-2 bg-slate-900/50 px-4 py-1 rounded-sm border border-frontier-gold/20">
+                    </motion.span>
+                    <motion.span 
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 1.2 }}
+                      className="text-sm font-bold text-frontier-gold uppercase tracking-[0.3em] mt-2 bg-slate-900/50 px-4 py-1 rounded-sm border border-frontier-gold/20"
+                    >
                         Vehicles Per Day
-                    </span>
+                    </motion.span>
                  </div>
             </div>
         </div>
 
         {/* THE FUNNEL NECK: The Conversion */}
         <div className="relative z-20 -mt-6 w-full max-w-lg px-6">
-            <div className="bg-frontier-slate text-white p-4 rounded-sm shadow-xl flex items-center justify-between border-t border-white/10 relative overflow-hidden">
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ type: "spring", stiffness: 200, delay: 1.5 }}
+              className="bg-frontier-slate text-white p-4 rounded-sm shadow-xl flex items-center justify-between border-t border-white/10 relative overflow-hidden"
+            >
                  <div className="absolute inset-0 bg-frontier-gold/10"></div>
                  <div className="relative z-10 flex items-center gap-3">
                      <div className="p-2 bg-white/10 rounded-full border border-white/20">
@@ -55,31 +92,49 @@ const TrafficFunnel = () => (
                      </div>
                  </div>
                  <div className="text-right relative z-10">
-                     <div className="text-2xl font-bold text-frontier-gold">0.15%</div>
+                     <motion.div 
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 2 }}
+                        className="text-2xl font-bold text-frontier-gold"
+                     >0.15%</motion.div>
                      <div className="text-[10px] font-bold opacity-50 uppercase">Capture Target</div>
                  </div>
-            </div>
+            </motion.div>
         </div>
 
         {/* THE BASIN: The Result Stats */}
         <div className="w-full bg-white pt-12 pb-8 px-8 grid grid-cols-2 gap-8 divide-x divide-frontier-slate/10">
-             <div className="text-center group">
+             <motion.div 
+               initial={{ opacity: 0, x: -20 }}
+               whileInView={{ opacity: 1, x: 0 }}
+               viewport={{ once: true }}
+               transition={{ delay: 2.2 }}
+               className="text-center group"
+             >
                  <div className="text-[10px] font-bold text-frontier-slate/40 uppercase tracking-widest mb-2">Dwell Time</div>
                  <div className="text-3xl font-bold text-frontier-slate group-hover:text-frontier-red transition-colors">2-4 Hr</div>
                  <div className="text-xs text-frontier-slate/60 mt-1">vs. 0 min today</div>
-             </div>
+             </motion.div>
              
-             <div className="text-center group">
+             <motion.div 
+               initial={{ opacity: 0, x: 20 }}
+               whileInView={{ opacity: 1, x: 0 }}
+               viewport={{ once: true }}
+               transition={{ delay: 2.4 }}
+               className="text-center group"
+             >
                  <div className="text-[10px] font-bold text-frontier-slate/40 uppercase tracking-widest mb-2">Economic Impact</div>
                  <div className="text-3xl font-bold text-frontier-slate group-hover:text-frontier-gold transition-colors">$1,050</div>
                  <div className="text-xs text-frontier-slate/60 mt-1">Avg. Spend / Trip</div>
-             </div>
+             </motion.div>
         </div>
         
         <div className="w-full bg-frontier-limestone py-2 text-center border-t border-frontier-slate/5">
             <span className="text-[9px] text-frontier-slate/30 font-mono uppercase">FIG 1.2: TRAFFIC CAPTURE MODEL</span>
         </div>
-    </div>
+    </motion.div>
 );
 
 export const OpportunitySection: React.FC = () => {
@@ -89,58 +144,98 @@ export const OpportunitySection: React.FC = () => {
         
         {/* Module Header */}
         <div className="mb-16 border-l-4 border-frontier-red pl-6">
-            <span className="text-frontier-slate/40 font-bold tracking-widest uppercase text-xs">Module 1</span>
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-frontier-slate mt-2">
+            <motion.span 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-frontier-slate/40 font-bold tracking-widest uppercase text-xs"
+            >Module 1</motion.span>
+            <motion.h2 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="font-serif text-4xl md:text-5xl font-bold text-frontier-slate mt-2"
+            >
               The Vision & The Fix
-            </h2>
-            <p className="text-xl text-frontier-slate/60 mt-2 font-serif italic">
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="text-xl text-frontier-slate/60 mt-2 font-serif italic"
+            >
                 "Turning a Liability into a Landmark"
-            </p>
+            </motion.p>
         </div>
 
         {/* The Executive Summary Text */}
         <div className="grid lg:grid-cols-2 gap-16 mb-20 items-center">
             <div className="space-y-6">
-                 <p className="text-lg text-frontier-slate/80 leading-relaxed font-medium">
+                 <motion.p 
+                   initial={{ opacity: 0 }}
+                   whileInView={{ opacity: 1 }}
+                   viewport={{ once: true }}
+                   transition={{ delay: 0.5 }}
+                   className="text-lg text-frontier-slate/80 leading-relaxed font-medium"
+                 >
                     Commissioners, we are not just asking to build a museum. We are asking to fix a geometric failure in our county’s infrastructure and secure a 50-acre asset that is currently fragmented.
-                 </p>
-                 <p className="text-frontier-slate/70 leading-relaxed">
+                 </motion.p>
+                 <motion.p 
+                   initial={{ opacity: 0 }}
+                   whileInView={{ opacity: 1 }}
+                   viewport={{ once: true }}
+                   transition={{ delay: 0.6 }}
+                   className="text-frontier-slate/70 leading-relaxed"
+                 >
                     Right now, <strong>Hyder Hill Road</strong> slices through the historic core of Piney Flats. It meets US-11E at a skewed, dangerous acute angle. It separates our two greatest historical assets: the 1790 Rocky Mount site and the 1775 Massengill-Bachman Farm.
-                 </p>
+                 </motion.p>
                  
-                 <div className="bg-frontier-limestone p-6 rounded-sm border border-frontier-slate/10">
+                 <motion.div 
+                   initial={{ opacity: 0, y: 20 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                   viewport={{ once: true }}
+                   transition={{ delay: 0.7 }}
+                   className="bg-frontier-limestone p-6 rounded-sm border border-frontier-slate/10"
+                 >
                     <h4 className="font-bold text-frontier-slate text-sm uppercase tracking-wider mb-4">The Proposed Resolution</h4>
                     <ul className="space-y-4">
-                        <li className="flex gap-4">
-                            <div className="shrink-0 w-8 h-8 bg-frontier-slate text-white flex items-center justify-center rounded-sm font-bold text-sm">1</div>
-                            <div>
-                                <strong className="block text-frontier-slate text-sm">Geometric Correction</strong>
-                                <span className="text-xs text-frontier-slate/70">Vacate Hyder Hill Road to remove the 30-degree intersection hazard and eliminate cut-through traffic.</span>
-                            </div>
-                        </li>
-                        <li className="flex gap-4">
-                            <div className="shrink-0 w-8 h-8 bg-frontier-slate text-white flex items-center justify-center rounded-sm font-bold text-sm">2</div>
-                            <div>
-                                <strong className="block text-frontier-slate text-sm">The Campus Unification</strong>
-                                <span className="text-xs text-frontier-slate/70">Closing the road secures a single, defensible perimeter around the entire 50-acre property.</span>
-                            </div>
-                        </li>
-                        <li className="flex gap-4">
-                            <div className="shrink-0 w-8 h-8 bg-frontier-slate text-white flex items-center justify-center rounded-sm font-bold text-sm">3</div>
-                            <div>
-                                <strong className="block text-frontier-slate text-sm">The Time Bridge</strong>
-                                <span className="text-xs text-frontier-slate/70">The old asphalt becomes a pedestrian promenade connecting the farm (1775) to the capital (1790).</span>
-                            </div>
-                        </li>
+                        {[
+                            { id: 1, title: "Geometric Correction", desc: "Vacate Hyder Hill Road to remove the 30-degree intersection hazard and eliminate cut-through traffic." },
+                            { id: 2, title: "The Campus Unification", desc: "Closing the road secures a single, defensible perimeter around the entire 50-acre property." },
+                            { id: 3, title: "The Time Bridge", desc: "The old asphalt becomes a pedestrian promenade connecting the farm (1775) to the capital (1790)." }
+                        ].map((item, i) => (
+                            <motion.li 
+                              key={item.id}
+                              initial={{ opacity: 0, x: -10 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 0.8 + (i * 0.1) }}
+                              className="flex gap-4"
+                            >
+                                <div className="shrink-0 w-8 h-8 bg-frontier-slate text-white flex items-center justify-center rounded-sm font-bold text-sm">{item.id}</div>
+                                <div>
+                                    <strong className="block text-frontier-slate text-sm">{item.title}</strong>
+                                    <span className="text-xs text-frontier-slate/70">{item.desc}</span>
+                                </div>
+                            </motion.li>
+                        ))}
                     </ul>
-                 </div>
+                 </motion.div>
             </div>
 
             {/* The Visual Argument */}
             <div>
                  <TrafficFunnel />
                  <div className="mt-8 grid grid-cols-2 gap-4">
-                     <div className="p-4 border border-red-100 bg-red-50/50 rounded-sm">
+                     <motion.div 
+                       initial={{ opacity: 0, x: -20 }}
+                       whileInView={{ opacity: 1, x: 0 }}
+                       viewport={{ once: true }}
+                       transition={{ delay: 1 }}
+                       className="p-4 border border-red-100 bg-red-50/50 rounded-sm"
+                     >
                          <div className="flex items-center gap-2 mb-2">
                              <AlertTriangle className="w-4 h-4 text-red-600" />
                              <h4 className="font-bold text-red-900 text-sm">Current State</h4>
@@ -148,8 +243,14 @@ export const OpportunitySection: React.FC = () => {
                          <p className="text-xs text-red-800/70">
                              High-speed cut-through traffic. Fragmented parcels. Acute angle blind spot.
                          </p>
-                     </div>
-                     <div className="p-4 border border-green-100 bg-green-50/50 rounded-sm">
+                     </motion.div>
+                     <motion.div 
+                       initial={{ opacity: 0, x: 20 }}
+                       whileInView={{ opacity: 1, x: 0 }}
+                       viewport={{ once: true }}
+                       transition={{ delay: 1.2 }}
+                       className="p-4 border border-green-100 bg-green-50/50 rounded-sm"
+                     >
                          <div className="flex items-center gap-2 mb-2">
                              <ShieldCheck className="w-4 h-4 text-green-600" />
                              <h4 className="font-bold text-green-900 text-sm">Future State</h4>
@@ -157,7 +258,7 @@ export const OpportunitySection: React.FC = () => {
                          <p className="text-xs text-green-800/70">
                              Single secure perimeter. 90-degree controlled access. Unified destination.
                          </p>
-                     </div>
+                     </motion.div>
                  </div>
             </div>
         </div>

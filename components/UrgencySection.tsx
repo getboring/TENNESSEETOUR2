@@ -1,8 +1,15 @@
 import React from 'react';
 import { Clock, Flag, AlertCircle, TrendingUp, CalendarCheck } from 'lucide-react';
+import { motion } from 'motion/react';
 
 const FundingWaveChart = () => (
-  <div className="relative h-72 w-full bg-slate-900 rounded-sm border border-white/10 p-4 shadow-2xl overflow-hidden group">
+  <motion.div 
+    initial={{ opacity: 0, scale: 0.95 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.8 }}
+    className="relative h-72 w-full bg-slate-900 rounded-sm border border-white/10 p-4 shadow-2xl overflow-hidden group"
+  >
      {/* Grid Lines */}
      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
 
@@ -26,30 +33,49 @@ const FundingWaveChart = () => (
         <text x="360" y="195" fill="white" fillOpacity="0.3" fontSize="10" fontFamily="sans-serif">2030</text>
 
         {/* The Wave Path - Dramatically steeper */}
-        <path d="M 20 170 L 80 165 L 120 120 L 160 80 L 200 10 L 240 60 L 280 140 L 380 175" 
+        <motion.path 
+              initial={{ pathLength: 0 }}
+              whileInView={{ pathLength: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 2, ease: "easeInOut" }}
+              d="M 20 170 L 80 165 L 120 120 L 160 80 L 200 10 L 240 60 L 280 140 L 380 175" 
               fill="url(#waveGradient)" stroke="#C5A059" strokeWidth="3" strokeLinejoin="round" />
         
         {/* "You Are Here" Marker */}
-        <line x1="120" y1="120" x2="120" y2="180" stroke="white" strokeWidth="1" strokeDasharray="2,2" />
-        <circle cx="120" cy="120" r="3" fill="white" />
-        <text x="125" y="115" fill="white" fontSize="8" fontFamily="sans-serif">WE ARE HERE</text>
+        <motion.g
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 1 }}
+        >
+           <line x1="120" y1="120" x2="120" y2="180" stroke="white" strokeWidth="1" strokeDasharray="2,2" />
+           <circle cx="120" cy="120" r="3" fill="white" />
+           <text x="125" y="115" fill="white" fontSize="8" fontFamily="sans-serif">WE ARE HERE</text>
+        </motion.g>
 
         {/* Peak Marker */}
-        <line x1="200" y1="10" x2="200" y2="180" stroke="#ef4444" strokeWidth="1" strokeDasharray="2,2" />
-        <circle cx="200" cy="10" r="4" fill="#ef4444" className="animate-pulse" />
-        
-        <foreignObject x="215" y="0" width="160" height="80">
-             <div className="text-xs text-white font-bold bg-red-900/90 backdrop-blur-md p-3 rounded-sm border-l-2 border-red-500 shadow-xl">
-                <div className="flex items-center gap-2 mb-1 text-red-200">
-                    <TrendingUp className="w-3 h-3" />
-                    PEAK FUNDING
+        <motion.g
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 2, type: "spring" }}
+        >
+           <line x1="200" y1="10" x2="200" y2="180" stroke="#ef4444" strokeWidth="1" strokeDasharray="2,2" />
+           <circle cx="200" cy="10" r="4" fill="#ef4444" className="animate-pulse" />
+           
+           <foreignObject x="215" y="0" width="160" height="80">
+                <div className="text-xs text-white font-bold bg-red-900/90 backdrop-blur-md p-3 rounded-sm border-l-2 border-red-500 shadow-xl">
+                   <div className="flex items-center gap-2 mb-1 text-red-200">
+                       <TrendingUp className="w-3 h-3" />
+                       PEAK FUNDING
+                   </div>
+                   <span className="text-white font-normal block mb-1">TN250 Grant Cycle</span>
+                   <span className="text-white/60 text-[10px]">$3.5M Available NOW</span>
                 </div>
-                <span className="text-white font-normal block mb-1">TN250 Grant Cycle</span>
-                <span className="text-white/60 text-[10px]">$3.5M Available NOW</span>
-             </div>
-        </foreignObject>
+           </foreignObject>
+        </motion.g>
      </svg>
-  </div>
+  </motion.div>
 );
 
 export const UrgencySection: React.FC = () => {
@@ -63,13 +89,30 @@ export const UrgencySection: React.FC = () => {
         
         {/* Header */}
         <div className="max-w-4xl mx-auto mb-16">
-            <span className="text-frontier-gold font-bold tracking-widest uppercase text-sm">Market Timing Strategy</span>
-            <h2 className="font-serif text-4xl md:text-5xl font-bold mt-2 mb-6">
+            <motion.span 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-frontier-gold font-bold tracking-widest uppercase text-sm"
+            >Market Timing Strategy</motion.span>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="font-serif text-4xl md:text-5xl font-bold mt-2 mb-6"
+            >
                 The 250-Year Window
-            </h2>
-            <p className="text-lg text-white/80 leading-relaxed border-l-4 border-frontier-red pl-6">
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="text-lg text-white/80 leading-relaxed border-l-4 border-frontier-red pl-6"
+            >
                 America’s Semiquincentennial (250th anniversary) spans 2026-2027. This is the single largest heritage tourism investment cycle in American history. We are either ready to capture this wave, or we watch it pass to other counties.
-            </p>
+            </motion.p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 mb-16 items-center">
@@ -89,7 +132,13 @@ export const UrgencySection: React.FC = () => {
             {/* Right Col: The Cost of Waiting */}
             <div className="space-y-8">
                 
-                <div className="relative bg-white text-frontier-slate p-8 rounded-sm shadow-xl">
+                <motion.div 
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.6 }}
+                  className="relative bg-white text-frontier-slate p-8 rounded-sm shadow-xl"
+                >
                     <div className="absolute -top-3 -right-3 bg-frontier-red text-white text-xs font-bold px-3 py-1 uppercase tracking-widest shadow-lg rounded-sm">
                         Reality Check
                     </div>
@@ -103,30 +152,48 @@ export const UrgencySection: React.FC = () => {
                             </p>
                         </div>
                     </div>
-                </div>
+                </motion.div>
 
                 <div className="grid grid-cols-2 gap-4">
-                     <div className="bg-white/5 p-4 rounded-sm border border-white/10">
+                     <motion.div 
+                       initial={{ opacity: 0, y: 20 }}
+                       whileInView={{ opacity: 1, y: 0 }}
+                       viewport={{ once: true }}
+                       transition={{ delay: 0.8 }}
+                       className="bg-white/5 p-4 rounded-sm border border-white/10"
+                     >
                         <CalendarCheck className="w-5 h-5 text-frontier-gold mb-2" />
                         <h4 className="font-bold text-white text-sm">Action</h4>
                         <p className="text-xs text-white/60">Approve Phase 1 Funding in Q1 2024.</p>
-                     </div>
-                     <div className="bg-white/5 p-4 rounded-sm border border-white/10">
+                     </motion.div>
+                     <motion.div 
+                       initial={{ opacity: 0, y: 20 }}
+                       whileInView={{ opacity: 1, y: 0 }}
+                       viewport={{ once: true }}
+                       transition={{ delay: 0.9 }}
+                       className="bg-white/5 p-4 rounded-sm border border-white/10"
+                     >
                         <Flag className="w-5 h-5 text-frontier-red mb-2" />
                         <h4 className="font-bold text-white text-sm">Result</h4>
                         <p className="text-xs text-white/60">Ribbon cutting in time for July 4, 2026.</p>
-                     </div>
+                     </motion.div>
                 </div>
             </div>
         </div>
 
         {/* Closer */}
-        <div className="border-t border-white/10 pt-12 text-center max-w-3xl mx-auto">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 1.2 }}
+          className="border-t border-white/10 pt-12 text-center max-w-3xl mx-auto"
+        >
             <h3 className="font-serif text-2xl md:text-3xl font-bold mb-6">
                 The question isn't whether this project makes sense. <br/>
                 <span className="text-frontier-gold">The question is whether we build it while the nation is watching—or after everyone has moved on.</span>
             </h3>
-        </div>
+        </motion.div>
 
       </div>
     </section>
